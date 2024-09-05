@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -17,5 +18,12 @@ use Laravel\Sanctum\Sanctum;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+   return view('welcome');
+//    $students = Student::all();
+//    if($students->count() > 0){
+//     return $students;
+//    }
+//    else{
+//     return 'No se han encontrado registros';
+//    }
 });
