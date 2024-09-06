@@ -24,12 +24,13 @@ COPY --from=composer:2.7.7 /usr/bin/composer /usr/bin/composer
 # Instala dependencias de Laravel
 RUN composer install --no-dev --optimize-autoloader
 
-# Exponer el puerto 80 para la aplicación
-EXPOSE 80
+# Expone el puerto que Railway proporcionará
+EXPOSE ${PORT}
 
 # Establece el directorio de trabajo
 WORKDIR /var/www/html
 
+# Se establecen los permisos adecuados 
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache && \
     chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
@@ -39,3 +40,6 @@ RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available
 RUN echo "DirectoryIndex index.php" >> /etc/apache2/apache2.conf
 
 RUN a2enmod rewrite
+
+#Iniciar el servidor de php usando la variable de entorno PORT
+CMD php artisan serve --host=0.0.0.0 --port=${PORT}

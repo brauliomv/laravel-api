@@ -6,7 +6,7 @@ services:
       dockerfile: Dockerfile
     container_name: students-api
     ports:
-      - "8080:80"
+      - "${PORT}:${PORT}"
     volumes:
       - ./:/var/www/html
     environment:
@@ -16,6 +16,10 @@ services:
       - DB_DATABASE=students
       - DB_USERNAME=root
       - DB_PASSWORD=root
+      - PORT = ${PORT}
+    env_file:
+      - .env.docker
+    command: php artisan serve --host=0.0.0.0 --port=${PORT}  
     depends_on:
       - db
 
