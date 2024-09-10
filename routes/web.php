@@ -19,11 +19,11 @@ use Laravel\Sanctum\Sanctum;
 
 Route::get('/', function () {
    return view('welcome');
-//    $students = Student::all();
-//    if($students->count() > 0){
-//     return $students;
-//    }
-//    else{
-//     return 'No se han encontrado registros';
-//    }
+   // $students = Student::all();
+   // if($students->count() > 0){
+   //  return $students;
+   // }
+   // else{
+   //  return 'No se han encontrado registros';
+   // }
 });
