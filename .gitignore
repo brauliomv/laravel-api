@@ -6,6 +6,8 @@
 /storage/*.key
 /vendor
 /laradock
+docker-compose.yml
+Dockerfile
 .env
 .env.backup
 .env.production
